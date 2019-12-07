@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Iterating Through Arrays</title>
+    <script src="../js/d3.js"></script>
+  </head>
+  <body>
+    <h4>Using an array to generate &lt;p&gt; elements with simple styling effects</h4>
+    <script type="text/javascript">
+      var dataValues1 = [50, 100, 250, 150, 300];
+      var paras = d3.select("body")
+                    .selectAll("p")
+                    .data(dataValues1)
+                    .enter()
+                    .append("p")
+                    .text(function(d) {return "Paragraph Number: "+d})
+                    .style("font-size", "16px")
+                    .style("color", "blue");
+
+      d3.select("body").append("paras");
+    </script>
+  </body>
+</html>

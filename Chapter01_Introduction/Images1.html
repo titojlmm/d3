@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8" />
+   <title>Render PNG Images</title>
+   <script src="../js/d3.js"></script>
+ </head>
+
+ <body>
+   <script>
+     var width = 800, height = 500;
+     var imageWidth=100, imageHeight=100;
+     var dataValues = [[0,0], [100, 100], [200, 200]];
+     var images = ["sample1.png", "sample2.png", "sample3.png"];
+
+     // create an SVG container...
+     var svg = d3.select("body").append("svg")
+                 .attr("width",  width)
+                 .attr("height", height);
+
+     svg.selectAll("rect")
+        .data(dataValues)
+        .enter()
+        .append("svg:image")
+        .attr("xlink:href", function(d,i) {
+           return images[i];
+        })
+        .attr("width",  imageWidth)
+        .attr("height", imageHeight)
+        .attr("x",  function(d) {
+           return d[0];
+        })
+        .attr("y",  function(d) {
+           return d[1];
+        })
+   </script>
+ </body>
+</html>

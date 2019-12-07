@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bezier Curves and Text</title>
+    <script src="../js/d3.js"></script>
+  </head>
+  <body>
+    <h4>Bezier Curves and Text</h4>
+    <script type="text/javascript">
+      var width=600, height=400, opacity=0.5;
+      var cubicPath = "M20,20 C300,200 100,500 400,100";
+      var quadPath = "M200,20 Q100,300 500,100";
+
+      var cValues = "M20,20 C300,200 100,500 400,100";
+      var qValues = "M200,20 Q100,300 500,100";
+
+      var fontSizeC = "24";
+      var fontSizeQ = "18";
+
+      var textC = "Sample text that follows a path of a cubic Bezier curve";
+      var textQ = "Sample text that follows a path of a quadratic Bezier curve";
+
+      var fillColors = ["red", "blue", "green", "yellow"];
+
+      // Create an SVG container...
+      var svgContainer =
+        d3.select("body")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+      var defs =
+        svgContainer.append("svg:defs");
+
+      var patternC =
+        defs.append("svg:path")
+            .attr('id', 'pathInfoC')
+            .attr('d', cValues);
+
+      var patternQ =
+        defs.append("svg:path")
+            .attr('id', 'pathInfoQ')
+            .attr('d', qValues);
+
+      // Now add the 'g' element
+      var g1 =
+        svgContainer.append('svg:g');
+
+      // Create a cubic Bezier curve
+      var bezierC =
+        g1.append('path')
+          .attr('d', cubicPath)
+          .attr('fill', fillColors[0])
+          .attr('stroke', 'blue')
+          .attr('stroke-width', 2);
+
+      // Text following a cubic Bezier curve
+      var textC =
+        g1.append('text')
+          .attr('id', 'textStyleC')
+          .attr('fill', fillColors[1])
+          .attr('stroke', 'blue')
+          .attr('stroke-width', 2)
+            .append('textPath')
+              .attr('font-size', fontSizeC)
+              .attr('xlink:href', '#pathInfoC')
+              .text(textC);
+
+      // Create a quadratic Bezier curve
+      var bezierQ =
+        g1.append('path')
+          .attr('d', quadPath)
+          .attr('fill', fillColors[1])
+          .attr('opacity', opacity)
+          .attr('stroke', 'blue')
+          .attr('stroke-width', 2);
+
+      // Text following a quadratic Bezier curve
+      var textQ =
+        g1.append('text')
+          .attr('id', 'textStyleQ')
+          .attr('stroke', fillColors[3])
+          .attr('stroke-width', 2)
+            .append('textPath')
+              .attr('font-size', fontSizeQ)
+              .attr('xlink:href', '#pathInfoQ')
+              .text(textQ);
+    </script>
+  </body>
+</html>

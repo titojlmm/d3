@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Generating gradients through Arrays</title>
+    <script src="../js/d3.js"></script>
+
+    <style>
+      .gradient {
+        display: inline-block;
+        top:    20px;
+        width:  100px;
+        height: 100px;
+
+        background-image: -webkit-gradient(linear,
+                           100% 0%, 0% 100%,
+                           from(#f00), to(#00f));
+        background-image: -gradient(linear,
+                           100% 0%, 0% 100%,
+                           from(#f00), to(#00f));
+
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>Generating gradients through Arrays</h4>
+    <script type="text/javascript">
+    var dataValues1 = [0, 150, 300, 450, 600];
+
+    d3.select("body").selectAll("p")
+        .data(dataValues1)
+        .enter()
+        .append("div")
+        .attr("left", function(d) {
+            return d+"px";
+        })
+        .attr("class", "gradient");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test range</title>
+    <script src="../js/d3.js"></script>
+  </head>
+  <body>
+    <h4>Test range</h4>
+    <script type="text/javascript">
+      // Scaling arrays of numbers to different ranges
+      console.log("Range from 0 to 14: " + d3.range(15));
+
+      var
+        dataValues = [10, 20, 30, 40, 50],
+        left=0, right=10,
+        pad=20,
+        height=20;
+      xScale = d3.scaleLinear()
+        .domain([d3.min(dataValues), d3.max(dataValues)])
+        .range([left+pad, right-pad]);
+      yScale = d3.scaleLinear()
+        .domain([d3.min(dataValues), d3.max(dataValues)])
+        .range([pad, height-pad]);
+
+      var range1 = d3.range(1, 5).reverse();
+      console.log("Range from 5 to 1: " + range1);
+
+      // Tweening in D3 (cálculo de números entre un valor inicial y otro final)
+      // - styleTween => cambios progresivos a partir de estilos
+      // - attrTween => cambios progresivos a partir de atributos
+      // - tween => cambios progresivos general
+      d3.select("body")
+        .transition().styleTween("color", function() {
+          return d3.interpolate("green", "red");
+        });
+
+      // Formatting numbers
+      var x1 = 1234000;
+      var x2 = d3.format(",")(x1);
+      console.log("1234000 formateado con comas: " + x2);
+      var x3 = d3.format(".3s")(x1);
+      console.log("1234000 formateado con millones (2 decimales): " + x3);
+      var x4 = d3.format(".4s")(x1);
+      console.log("1234000 formateado con millones (3 decimales): " + x4);
+    </script>
+  </body>
+</html>
